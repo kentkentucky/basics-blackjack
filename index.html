@@ -50,7 +50,11 @@
         max-width: 300px;
       }
 
-      #submit-button {
+      #game-buttons {
+        display: none; 
+      }
+
+      #submit-button, #hit-button, #stand-button {
         font-size: 16px;
         line-height: 24px;
         margin: 0 0 10px 0;
@@ -124,6 +128,10 @@
       <input id="input-field" />
       <br />
       <button id="submit-button">Submit</button>
+      <div id="game-buttons">
+        <button id="hit-button">Hit</button>
+        <button id="stand-button">Stand</button>
+      </div>
       <p>Output:</p>
       <div id="output-div">Press the Submit Button to draw the cards and start game</div>
     </div>
@@ -131,18 +139,45 @@
     <script src="script.js"></script>
     <!-- Define button click functionality -->
     <script>
+      var gameButtons = document.querySelector("#game-buttons");
+      var output = document.querySelector("#output-div");
       var button = document.querySelector("#submit-button");
+      var hitButton = document.querySelector("#hit-button");
+      var standButton = document.querySelector("#stand-button");
+
+      function updateButtonVisibility(gameOver) {
+        if (gameOver) {
+          gameButtons.style.display = 'none';
+          button.style.display = 'inline-block';
+          button.textContent = 'New Game';
+        } else {
+          gameButtons.style.display = 'block';
+          button.style.display = 'none';
+        }
+      }
+
       button.addEventListener("click", function () {
-        // Set result to input value
-        var input = document.querySelector("#input-field");
-        var result = main(input.value);
 
         // Display result in output element
-        var output = document.querySelector("#output-div");
-        output.innerHTML = result;
+        var result = main('start');
+        output.innerHTML = result.output;
 
-        // Reset input value
-        input.value = "";
+        // Show hit and stand button once submit button is pressed
+        updateButtonVisibility(result.gameOver);
+      });
+
+      hitButton.addEventListener("click", function (){
+        console.log("Hit Button Pressed");
+        var result = main('hit');
+        output.innerHTML = result.output;
+        updateButtonVisibility(result.gameOver);
+      });
+      
+      standButton.addEventListener("click", function () {
+        console.log("Stand Button Pressed");
+        var result = main('stand');
+        output.innerHTML = result.output;
+        updateButtonVisibility(result.gameOver);
       });
     </script>
   </body>

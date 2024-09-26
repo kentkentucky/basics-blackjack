@@ -193,6 +193,7 @@ var determineWinner = function() {
 
 var main = function (input) {
   var output = '';
+  var gameOver = false;
 
   if (gameState.gamePhase === 'start') {
     gameState.deck = shuffleCards(createCardDeck());
@@ -201,6 +202,7 @@ var main = function (input) {
     if (blackjackResult) {
       output = blackjackResult;
       gameState.gamePhase = 'gameOver';
+      gameOver = true;
     } else {
       output = "Cards dealt. Your turn.";
     }
@@ -209,6 +211,7 @@ var main = function (input) {
       playerAction(input);
       if (gameState.gamePhase === 'dealerTurn') {
         dealerAction();
+        gameOver = true;
       }
     } else {
       output = "Invalid input. Please enter 'hit' or 'stand'.";
@@ -216,28 +219,25 @@ var main = function (input) {
   }
 
   // Display current hands
-  // output += "<br>Your hand: " + displayHand(gameState.playerHand);
-  // output += "<br>Dealer's hand: " + displayHand(gameState.dealerHand, true, gameState.gamePhase !== 'gameOver');
-
   output += "<div class='player-hand'><h2>Your hand:</h2>" + displayHand(gameState.playerHand) + "</div>";
   output += "<div class='dealer-hand'><h2>Dealer's hand:</h2>" + displayHand(gameState.dealerHand, true, gameState.gamePhase !== 'gameOver') + "</div>";
 
-  if (gameState.gamePhase === 'gameOver') {
-    output = determineWinner();
-
-    // Display current hands
-    output += "<div class='player-hand'><h2>Your hand:</h2>" + displayHand(gameState.playerHand) + "</div>";
-    output += "<div class='dealer-hand'><h2>Dealer's hand:</h2>" + displayHand(gameState.dealerHand, true, gameState.gamePhase !== 'gameOver') + "</div>";
+  if (gameState.gamePhase === 'gameOver' || gameOver) {
+    output = determineWinner() + "<br>" + output;
     // Reset game state for next game
     gameState.gamePhase = 'start';
     gameState.playerHand = [];
     gameState.dealerHand = [];
     gameState.playerStand = false;
+    gameOver = true;
   }
   
   if (gameState.gamePhase === 'playerTurn') {
     output += "<br>Do you want to 'hit' or 'stand'?";
   }
 
-  return output;
+  return {
+    output: output,
+    gameOver: gameOver
+  };
 };
