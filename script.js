@@ -100,6 +100,25 @@ var displayHand = function(hand, isDealer = false, hideSecond = false) {
   return output;
 };
 
+var displayHand = function(hand, isDealer = false, hideSecond = false) {
+  var output = '<div class="hand">';
+  var handValue = calculateHandValue(hand);
+  
+  for (var i = 0; i < hand.length; i++) {
+    if (isDealer && hideSecond && i === 1) {
+      output += '<img src="card-images/back.png" alt="Hidden Card" class="card">';
+    } else {
+      var cardName = `${hand[i].name}_of_${hand[i].suit}`.toLowerCase();
+      output += `<img src="card-images/${cardName}.png" alt="${hand[i].name} of ${hand[i].suit}" class="card">`;
+    }
+  }
+  
+  output += `<span class="hand-value">${isDealer && hideSecond ? 'Dealer hand' : 'Hand value: ' + handValue}</span>`;
+  output += '</div>';
+  
+  return output;
+};
+
 // Initialise object to keep track of the game states and the cards at hand
 var gameState = {
   deck: [],
@@ -197,15 +216,18 @@ var main = function (input) {
   }
 
   // Display current hands
-  output += "<br>Your hand: " + displayHand(gameState.playerHand);
-  output += "<br>Dealer's hand: " + displayHand(gameState.dealerHand, true, gameState.gamePhase !== 'gameOver');
+  // output += "<br>Your hand: " + displayHand(gameState.playerHand);
+  // output += "<br>Dealer's hand: " + displayHand(gameState.dealerHand, true, gameState.gamePhase !== 'gameOver');
+
+  output += "<div class='player-hand'><h2>Your hand:</h2>" + displayHand(gameState.playerHand) + "</div>";
+  output += "<div class='dealer-hand'><h2>Dealer's hand:</h2>" + displayHand(gameState.dealerHand, true, gameState.gamePhase !== 'gameOver') + "</div>";
 
   if (gameState.gamePhase === 'gameOver') {
     output = determineWinner();
 
     // Display current hands
-    output += "<br>Your hand: " + displayHand(gameState.playerHand);
-    output += "<br>Dealer's hand: " + displayHand(gameState.dealerHand, true, gameState.gamePhase !== 'gameOver');
+    output += "<div class='player-hand'><h2>Your hand:</h2>" + displayHand(gameState.playerHand) + "</div>";
+    output += "<div class='dealer-hand'><h2>Dealer's hand:</h2>" + displayHand(gameState.dealerHand, true, gameState.gamePhase !== 'gameOver') + "</div>";
     // Reset game state for next game
     gameState.gamePhase = 'start';
     gameState.playerHand = [];
