@@ -73,6 +73,7 @@ var calculateHandValue = function(hand) {
     total -= 10;
     aceCount--;
   }
+  // console.log("Hand Value: ", total);
   return total;
 };
 
@@ -86,7 +87,17 @@ var displayHand = function(hand, isDealer = false, hideSecond = false) {
       output += `${hand[i].name} of ${hand[i].suit}, `;
     }
   }
-  return output.slice(0, -2);  // Remove the last comma and space
+  output = output.slice(0, -2);  // Remove the last comma and space
+  
+  // Add hand value
+  var handValue = calculateHandValue(hand);
+  if (isDealer && hideSecond) {
+    output += ` (Visible card value: ${hand[0].value})`;
+  } else {
+    output += ` (Hand value: ${handValue})`;
+  }
+  
+  return output;
 };
 
 // Initialise object to keep track of the game states and the cards at hand
