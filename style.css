@@ -1,0 +1,361 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    background-color: white;
+    color: black;
+    background-image: url("card-images/background.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* styling for index page */
+.container-intro {
+    background-color: rgba(248, 192, 255, 0.9);
+    margin: 20px auto;
+    max-width: 800px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.intro {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.tenor-gif-embed {
+    width: 100%;
+    max-width: 100vw;
+    height: auto;
+    margin: 0 auto;
+}
+
+.header {
+    text-align: center;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.play-btn {
+    width: 10vw;
+    height: 5vh;
+    font-size: 1rem;
+}
+
+/* styling for login and signup page */
+.login-container, .signup-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container > p {
+    font-size: 1.5rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+.signup-container > p {
+    font-size: 1.5rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+.login-input, .signup-input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40vw;
+    margin: 4vw;
+    padding: 2vw;
+    border: solid 2px black;
+    gap: 2vw;
+}
+
+.container-input {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+}
+
+.input-field {
+    width: 25vw;
+    height: 5vw;
+    outline: none;
+}
+
+.input-field:focus {
+    border: 2px solid dodgerblue;
+}
+
+#login, #signup {
+    width: 17vw;
+    height: 4vw;
+    font-size: 1rem;
+    background-color: dodgerblue;
+    border: 0;
+    border-radius: 12px;
+    margin-top: 2vw;
+}
+
+#login:hover, #signup:hover {
+    cursor: grabbing;
+    background-color: #00FF7F;
+}
+
+.icon {
+    padding: 10px;
+    background: dodgerblue;
+    color: white;
+    min-width: 50px;
+    text-align: center;
+    height: 5vw;
+}
+
+#login-error-msg {
+    width: 23%;
+    text-align: center;
+    margin: 0;
+    padding: 5px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #8a0000;
+    border: 1px solid #8a0000;
+    background-color: #e58f8f;
+    opacity: 0;
+    width: 40vw;
+}
+
+.login-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10vw;
+}
+
+.login-links > a {
+    font-size: 1rem;
+    color: black;
+}
+
+#signup-msg {
+    width: 23%;
+    text-align: center;
+    margin: 0;
+    padding: 5px;
+    font-size: 12px;
+    font-weight: bold;
+    color: green;
+    border: 1px solid green;
+    background-color: lightgreen;
+    opacity: 0;
+    width: 40vw;
+}
+
+/* styling for game page */
+#ingame-buttons {
+    display: none; 
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 2vw;
+}
+
+#start-button, #hit-button, #stand-button, #leave-button {
+    font-size: 16px;
+    line-height: 24px;
+    margin: 0 0 10px 0;
+    padding: 5px 15px;
+    cursor: pointer;
+    width: 20vw;
+    border-radius: 10px;
+}
+
+#start-button {
+    background-color: #38b000;
+}
+
+#leave-button {
+    background-color: #d90429;
+}
+
+#hit-button, #stand-button {
+    background-color: dodgerblue;
+}
+
+#output-div {
+    background-color: rgba(211, 211, 211, 0.7);
+    padding: 20px;
+    width: 100%;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.card { 
+    height: 100px;
+    margin: 5px; 
+}
+
+.hand { 
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+#hand-value { 
+    text-align: center;
+}
+
+.container-game {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2vh;
+}
+
+.blackjack-table {
+    width: 100%;
+    height: 70vh;
+    border-radius: 0 0 45% 45%;
+    background-color: #8a0000;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 2fr 1fr 2fr;
+}
+
+.table-icon {
+    align-self: center;
+    text-align: center;
+    font-size: 2rem;
+    grid-area: 2 / 2 / 3 / 3;
+}
+
+#deck {
+    grid-area: 1 / 1 / 2 / 2;
+}
+
+.card-deck {
+    display: block;
+    width: 20vw;
+}
+
+#dealer {
+    grid-area: 1 / 2 / 2 / 3;
+    display: flex;
+    justify-content: center;
+}
+
+#player-user {
+    grid-area: 3 / 2 / 4 / 3;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+#player1 {
+    grid-area: 2 / 3 / 4 / 4;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    transform: rotate(-45deg) translateX(40px);
+}
+
+#player2 {
+    grid-area: 2 / 1 / 4 / 2;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    transform: rotate(45deg);
+}
+
+/* styling for home page */
+.navbar-container {
+    width: 100%;
+    height: auto;
+    padding-left: 1vw;
+    background-color: #006400;
+    border-bottom: solid 2px black;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 40vw;
+}
+
+.navbar-logo > img {
+    width: 5vw;
+    height: 5vw;
+}
+
+#coins-container > img {
+    width: 7vw;
+    height: 5vw;
+}
+
+#coins-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.slide {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1vw;
+}
+
+.table-image {
+    width: 60vw;
+    height: 50vh;
+}
+
+.slides-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2vw;
+}
+
+.gamble-btn {
+    width: 10vw;
+    height: 3vw;
+    background-color: #8a0000;
+    border-radius: 8px;
+}
+
+#earnings {
+    text-align: center;
+}
+
+/* increase header font size on wider screens */
+@media screen and (min-width: 600px) {
+    .header {
+        font-size: 2rem;
+    }
+
+    #input-field, #submit-button {
+        font-size: 18px;
+        line-height: 28px;
+    }
+
+    .card {
+        width: 100px;
+    }
+}

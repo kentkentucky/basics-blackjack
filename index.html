@@ -1,184 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- ... (keep all the existing head content) ... -->
-
-    <!-- CSS -->
-    <style>
-      * {
-        box-sizing: border-box;
-      }
-
-      body {
-        font-family: 'Open Sans', sans-serif;
-        margin: 0;
-        padding: 20px;
-        background-color: white;
-        color: black;
-        background-image: url("card-images/table.jpg");
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-      }
-
-      #output-div img {
-        display: block;
-        max-width: 100%;
-        max-height: 200px;
-      }
-
-      .header {
-        text-align: center;
-        font-size: 1.1rem;
-        margin-bottom: 1rem;
-      }
-
-      #container {
-        background-color: rgba(248, 192, 255, 0.9);
-        margin: 20px auto;
-        max-width: 800px;
-        padding: 20px;
-        border-radius: 10px;
-      }
-
-      #input-field {
-        font-size: 16px;
-        line-height: 24px;
-        margin: 0 0 10px 0;
-        padding: 5px 9px;
-        width: 100%;
-        max-width: 300px;
-      }
-
-      #game-buttons {
-        display: none; 
-      }
-
-      #submit-button, #hit-button, #stand-button {
-        font-size: 16px;
-        line-height: 24px;
-        margin: 0 0 10px 0;
-        padding: 5px 15px;
-        cursor: pointer;
-      }
-
-      #output-div {
-        background-color: rgba(211, 211, 211, 0.7);
-        margin: 20px auto;
-        padding: 20px;
-        width: 100%;
-        border-radius: 5px;
-      }
-
-      .card { 
-        width: 70px; 
-        height: auto; 
-        margin: 5px; 
-      }
-
-      .hand { 
-        display: flex; 
-        flex-wrap: wrap;
-        align-items: center; 
-      }
-
-      .hand-value { 
-        margin-left: 10px; 
-      }
-
-      .tenor-gif-embed {
-        width: 100%;
-        max-width: 300px;
-        height: auto;
-        margin: 0 auto;
-      }
-
-      /* increase header font size on wider screens */
-      @media screen and (min-width: 600px) {
-        .header {
-          font-size: 2rem;
-        }
-
-        #input-field, #submit-button {
-          font-size: 18px;
-          line-height: 28px;
-        }
-
-        .card {
-          width: 100px;
-        }
-      }
-    </style>
-
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
   </head>
-
   <body>
-    <div id="container">
+    <div class="container-intro">
       <h1 class="header">
         <div class="tenor-gif-embed" data-postid="12130977" data-share-method="host" data-aspect-ratio="2" data-width="100%">
           <a href="https://tenor.com/view/mel-gibson-stupid-looking-shocked-gif-12130977">Mel Gibson Stupid GIF</a>from<a href="https://tenor.com/search/mel+gibson-gifs">Mel Gibson GIFs</a>
         </div> 
         <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
       </h1>
-      <h1 class="header">♣️ Blackjack ♠️</h1>
-      <p>Hello! Welcome to Beat That! Click submit to start the game.</p>
-      <p>Players receive all cards face up and the dealer's first card is face up and the second is face down.</p>
-      <p>The object of the game is to get closer to 21 than the dealer without going over 21</p>
-      <p>Input:</p>
-      <input id="input-field" />
-      <br />
-      <button id="submit-button">Submit</button>
-      <div id="game-buttons">
-        <button id="hit-button">Hit</button>
-        <button id="stand-button">Stand</button>
-      </div>
-      <p>Output:</p>
-      <div id="output-div">Press the Submit Button to draw the cards and start game</div>
+      <div class="intro">
+        <h2 class="header">♣️ Blackjack ♠️</h1>
+        <p>Hello! Welcome to Beat That! Click play to start the game.</p>
+        <p>Players receive all cards face up and the dealer's first card is face up and the second is face down.</p>
+        <p>The object of the game is to get closer to 21 than the dealer without going over 21</p>
+        <a href="login.html"><button class="play-btn">Play</button></a>
+        </div>
     </div>
-    <!-- Import program logic -->
-    <script src="script.js"></script>
-    <!-- Define button click functionality -->
-    <script>
-      var gameButtons = document.querySelector("#game-buttons");
-      var output = document.querySelector("#output-div");
-      var button = document.querySelector("#submit-button");
-      var hitButton = document.querySelector("#hit-button");
-      var standButton = document.querySelector("#stand-button");
-
-      function updateButtonVisibility(gameOver) {
-        if (gameOver) {
-          gameButtons.style.display = 'none';
-          button.style.display = 'inline-block';
-          button.textContent = 'New Game';
-        } else {
-          gameButtons.style.display = 'block';
-          button.style.display = 'none';
-        }
-      }
-
-      button.addEventListener("click", function () {
-
-        // Display result in output element
-        var result = main('start');
-        output.innerHTML = result.output;
-
-        // Show hit and stand button once submit button is pressed
-        updateButtonVisibility(result.gameOver);
-      });
-
-      hitButton.addEventListener("click", function (){
-        console.log("Hit Button Pressed");
-        var result = main('hit');
-        output.innerHTML = result.output;
-        updateButtonVisibility(result.gameOver);
-      });
-      
-      standButton.addEventListener("click", function () {
-        console.log("Stand Button Pressed");
-        var result = main('stand');
-        output.innerHTML = result.output;
-        updateButtonVisibility(result.gameOver);
-      });
-    </script>
+    
   </body>
 </html>
