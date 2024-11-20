@@ -15,8 +15,15 @@ loginButton.addEventListener("click", function(e)
 
 async function loadUsers() 
 {
-  const response = await axios.get(BASE_JSON_BIN_URL + "/" + BIN_ID + "/latest");
-  return response.data.record;
+    try 
+    {
+        const response = await axios.get(BASE_JSON_BIN_URL + "/" + BIN_ID + "/latest");
+        return response.data.record;    
+    } 
+    catch (error) 
+    {
+        console.log(error);
+    }
 };
 
 async function validateLogin(username, password) 

@@ -106,17 +106,30 @@ leaveButton.addEventListener("click", async function(e)
 
 async function loadUsers() 
 {
-  const response = await axios.get(BASE_JSON_BIN_URL + "/" + BIN_ID + "/latest");
-  return response.data.record;
+    try 
+    {
+        const response = await axios.get(BASE_JSON_BIN_URL + "/" + BIN_ID + "/latest");
+        return response.data.record;
+    } catch (error) 
+    {
+        console.log(error);
+    }
 };
 
 async function updateCoins(users)
 {
-    const response = await axios.put(`${BASE_JSON_BIN_URL}/${BIN_ID}`, users, {
-        headers: {
-          "Content-Type": "application/json",
-          "X-Master-Key": MASTER_KEY
-        }
-    });
-    return response.data.record;
+    try 
+    {
+        const response = await axios.put(`${BASE_JSON_BIN_URL}/${BIN_ID}`, users, {
+            headers: {
+              "Content-Type": "application/json",
+              "X-Master-Key": MASTER_KEY
+            }
+        });
+        return response.data.record;
+    } 
+    catch (error) 
+    {
+        
+    }
 };

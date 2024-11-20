@@ -4,6 +4,10 @@ const bet = parseInt(urlParams.get('bet'));
 const id = urlParams.get('userid');
 let earnings = 0;
 
+let shuffleSound = new Audio('sound effects/mixkit-thin-metal-card-deck-shuffle-3175.wav');
+let hitSound = new Audio('sound effects/mixkit-poker-card-flick-2002.wav');
+let coinSound = new Audio('sound effects/mixkit-clinking-coins-1993.wav');
+
 // Get a random index ranging from 0 (inclusive) to max (exclusive).
 var getRandomIndex = function (max) 
 {
@@ -297,6 +301,7 @@ let main = function()
 
     if(gameState.gamePhase.isStart)
     {
+        shuffleSound.play();
         gameState.deck = shuffleCards(createCardDeck());
         dealInitialCards();
 
@@ -306,7 +311,9 @@ let main = function()
         if(pocketAceResult || blackJackResults)
         {
             output = pocketAceResult || blackJackResults;
+            coinSound.play();
             gameState.gamePhase.isStart = false;
+            gameState.gamePhase.isGameOver = true;
             gameOver = true;
         }
         else 
@@ -324,7 +331,7 @@ let main = function()
     }
     if(gameState.gamePhase.isUserTurn)
     {
-        output = "Your turn! Click HIT or STAND!";
+        output = "Your turn! Click 'Hit' or 'Stand'!";
         if (gameState.userHand.length === 5) 
         {
             output = "You've reached 5 cards! Ending your turn.";
@@ -348,6 +355,7 @@ let main = function()
     }
     if(gameState.gamePhase.isGameOver)
     {
+        coinSound.play();
         output = determineWinner() + "<br>";
         gameOver = true;
     }
