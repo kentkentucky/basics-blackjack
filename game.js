@@ -199,6 +199,7 @@ let userAction = function(action)
         if(action === 'hit') 
         {
             gameState.userHand.push(gameState.deck.pop());
+            hitSound.play();
             if (calculateHandValue(gameState.userHand) > 21) 
             {
                 gameState.gamePhase.isUserTurn = false;
