@@ -336,6 +336,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 2vw;
+    padding-bottom: 1vw;
 }
 
 .enter-btn {
@@ -350,6 +351,66 @@ body {
     width: 8vw;
     height: 5vh;
     border-radius: 10px;
+}
+
+#logout-btn:hover {
+    cursor: pointer;
+}
+
+#admin-container {
+    display: flex;
+    justify-content: center;
+}
+
+#admin-btn {
+    background-color: dodgerblue;
+    width: 10vw;
+    height: 5vh;
+    margin-top: 2vw;
+    border-radius: 10px;
+}
+
+#admin-btn:hover {
+    cursor: pointer;
+}
+
+/* styling for admin page */
+.user-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+table {
+    width: 80%;
+    border-collapse: collapse;
+    margin: 2vw 0;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    font-weight: bold;
+}
+
+tr:hover {
+    background-color: dodgerblue;
+}
+
+.delete-btn {
+    background-color: #8a0000;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.delete-btn:hover {
+    background-color: white;
 }
 
 /* increase header font size on wider screens */

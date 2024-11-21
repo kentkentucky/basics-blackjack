@@ -16,7 +16,8 @@ signupButton.addEventListener("click", async function(e)
         "id": users.length,
         "username": username,
         "password": password,
-        "coins": 100
+        "coins": 100,
+        "isAdmin": false
     }
     users = [...users, user];
     data = await addUsers(users);
@@ -37,7 +38,7 @@ async function loadUsers()
     {
         console.log(error);
     }
-}
+};
 
 async function addUsers(users) 
 {
@@ -55,4 +56,4 @@ async function addUsers(users)
     {
         console.log(error);
     }
-}
+};

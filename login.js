@@ -35,7 +35,7 @@ async function validateLogin(username, password)
         if(users[i].username == username && users[i].password == password)
         {
             console.log(users[i]);
-            window.location.href = `home.html?coins=${users[i].coins}&userid=${users[i].id}`;
+            window.location.href = `home.html?coins=${users[i].coins}&userid=${users[i].id}&isAdmin=${users[i].isAdmin}`;
         }
         else
         {
