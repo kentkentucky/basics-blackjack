@@ -6,6 +6,7 @@ const coinValue = document.getElementById("coin-value");
 const tableFive = document.getElementById("table-five");
 const tableTen = document.getElementById("table-ten");
 const tableTwenty = document.getElementById("table-twenty");
+const logout = document.getElementById("logout-btn");
 
 document.addEventListener('DOMContentLoaded', function()
 {
@@ -25,5 +26,9 @@ tableTen.addEventListener('click', function()
 tableTwenty.addEventListener('click', function()
 {
     window.location.href = `game.html?coins=${coins}&bet=20&userid=${id}`;
+});
+
+logout.addEventListener('click', function() {
+    window.location.href = 'index.html';
 });
 

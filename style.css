@@ -278,17 +278,22 @@ body {
     transform: rotate(45deg);
 }
 
+#earnings {
+    text-align: center;
+}
+
 /* styling for home page */
 .navbar-container {
     width: 100%;
     height: auto;
     padding-left: 1vw;
+    padding-right: 1vw;
     background-color: #006400;
     border-bottom: solid 2px black;
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 40vw;
+    justify-content: space-between;
 }
 
 .navbar-logo > img {
@@ -340,8 +345,11 @@ body {
     border-radius: 8px;
 }
 
-#earnings {
-    text-align: center;
+#logout-btn {
+    background-color: #8a0000;
+    width: 8vw;
+    height: 5vh;
+    border-radius: 10px;
 }
 
 /* increase header font size on wider screens */
